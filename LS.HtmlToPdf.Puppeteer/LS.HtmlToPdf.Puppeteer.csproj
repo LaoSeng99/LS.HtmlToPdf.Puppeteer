@@ -1,0 +1,38 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+
+	  <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+
+	  <!-- NuGet metadata -->
+	  <PackageId>LS.HtmlToPdf.Puppeeteer</PackageId>
+	  <Version>1.0.0</Version>
+	  <Authors>Laoseng</Authors>
+	  <Company>LS.Tools</Company>
+	  <Description>
+		  Lightweight utility library for rendering HTML to PDF using PuppeteerSharp.
+		  Designed for ease of use with minimal setup: pass HTML and receive byte[] for PDF output.
+		  Supports placeholder replacement, section injection, page headers/footers, and Chromium management.
+	  </Description>
+
+	  <PackageTags>
+		  html-to-pdf;pdf;puppeteer;puppeteersharp;pdf-generator;html-rendering;dotnet;chromium
+	  </PackageTags>
+
+	  <PackageLicenseExpression>MIT</PackageLicenseExpression>
+
+	  <Copyright>
+		  Copyright (c) 2025 Laoseng. Built with OpenAI ChatGPT assistance.
+	  </Copyright>
+	  <RepositoryUrl>https://github.com/LaoSeng99/LS.HtmlToPdf.Puppeeteer</RepositoryUrl>
+	  <RepositoryType>git</RepositoryType>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="PuppeteerSharp" Version="20.1.3" />
+  </ItemGroup>
+
+</Project>
