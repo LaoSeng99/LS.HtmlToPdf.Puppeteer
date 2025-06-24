@@ -78,16 +78,27 @@ var pdfBytes = await pdfService.RenderHtmlAsync(filledHtml, options);
 
 ## HtmlTemplateHelper API
 
+The `HtmlTemplateHelper` class provides a set of static utilities to help process HTML templates before rendering to PDF. These methods simplify common tasks like injecting dynamic content, validating structure, and assembling fragments.
+
+| Method | Description | Typical Use Case |
+|--------|-------------|------------------|
+| `ReplacePlaceholders(string html, Dictionary<string, string> data)` | Replaces placeholders in the HTML with provided values. | Populate dynamic values like `{{CustomerName}}`, `{{Total}}`, etc. |
+| `EnsureValid(string html)` | Validates the HTML structure (e.g. presence of `<html>`, `<body>`, `</body>`). | Ensure the template is suitable for rendering, catch missing root tags early. |
+| `HtmlEncode(string input)` | Converts special characters to HTML entities. | Prevents injection or encoding issues when inserting raw text into HTML. |
+| `LoadSection(string path)` | Loads a partial HTML file from disk. | Use for headers, footers, or reusable sections like invoice line templates. |
+| `InjectSection(string template, string placeholder, string htmlSection)` | Replaces a placeholder in a full HTML template with a section of content. | Insert dynamically constructed parts into base template, e.g. items table. |
+| `Concat(params string[] sections)` | Concatenates multiple HTML fragments with line breaks. | Assemble multiple blocks (e.g. item rows) into one section before injection. |
+
+### Example
+
 ```csharp
-HtmlTemplateHelper.ReplacePlaceholders(html, Dictionary<string, string>);
-HtmlTemplateHelper.EnsureValid(html);
-HtmlTemplateHelper.HtmlEncode(text);
-HtmlTemplateHelper.LoadSection(path);
-HtmlTemplateHelper.InjectSection(template, placeholder, sectionHtml);
-HtmlTemplateHelper.Concat(section1, section2, ...);
+var headerHtml = HtmlTemplateHelper.LoadSection("header.html");
+var footerHtml = HtmlTemplateHelper.LoadSection("footer.html");
+var fullHtml = HtmlTemplateHelper.InjectSection(baseTemplate, "{{Header}}", headerHtml);
+fullHtml = HtmlTemplateHelper.InjectSection(fullHtml, "{{Footer}}", footerHtml);
 ```
 
----
+
 
 ## Example: Rendering Multi-line Invoice Items
 
