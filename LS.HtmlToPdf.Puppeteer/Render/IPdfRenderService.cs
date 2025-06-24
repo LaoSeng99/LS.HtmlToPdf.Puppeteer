@@ -1,4 +1,5 @@
-﻿using PuppeteerSharp;
+﻿using System.Threading.Tasks;
+using PuppeteerSharp;
 
 namespace LS.HtmlToPdf.Puppeteer.Render
 {

@@ -1,4 +1,7 @@
 ﻿
+using System;
+using System.Collections.Generic;
+using System.IO;
 using System.Net;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -31,7 +34,7 @@ namespace LS.HtmlToPdf.Puppeteer.Helpers
             if (!Regex.IsMatch(html, @"<body[^>]*>", RegexOptions.IgnoreCase))
                 throw new ArgumentException("Missing <body> tag.");
 
-            if (!html.Contains("</body>", StringComparison.OrdinalIgnoreCase))
+            if (!html.Contains("</body>"))
                 throw new ArgumentException("Missing </body> closing tag.");
         }
 
@@ -43,9 +46,9 @@ namespace LS.HtmlToPdf.Puppeteer.Helpers
         /// <returns>The HTML string with placeholders replaced.</returns>
         public static string ReplacePlaceholders(string html, Dictionary<string, string> data)
         {
-            foreach (var (key, value) in data)
+            foreach (var pair in data)
             {
-                html = html.Replace(key, value ?? string.Empty);
+                html = html.Replace(pair.Key, pair.Value ?? string.Empty);
             }
             return html;
         }
