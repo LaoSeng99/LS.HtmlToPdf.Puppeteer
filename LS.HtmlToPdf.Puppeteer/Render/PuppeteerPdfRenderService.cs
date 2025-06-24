@@ -4,7 +4,7 @@ using PuppeteerSharp.Media;
 
 namespace LS.HtmlToPdf.Puppeteer.Render
 {
-    internal class PuppeteerPdfRenderService : IPdfRenderService
+    public class PuppeteerPdfRenderService : IPdfRenderService
     {
         public async Task<byte[]> RenderHtmlAsync(string html, PdfOptions? options = null)
         {
